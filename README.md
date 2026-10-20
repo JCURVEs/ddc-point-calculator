@@ -2,7 +2,7 @@
 
 DI, DO, AI, AO 관제점 수로 DDC 컨트롤러 후보와 TX-I/O 모듈 수량을 계산하는 웹앱입니다. 여러 DDC를 한 화면에서 비교하고, 선정 결과를 CSV로 내려받을 수 있습니다.
 
-**바로 사용:** [GitHub Pages 웹 계산기](https://jcurves.github.io/ddc-selector-v1/) · [Hugging Face Space](https://huggingface.co/spaces/Jcurve/ddc-selector-v1)
+**바로 사용:** [GitHub Pages 웹 계산기](https://jcurves.github.io/ddc-point-calculator/) · [Hugging Face Space](https://huggingface.co/spaces/Jcurve/ddc-point-calculator)
 
 이 저장소는 계산기 소스와 Excel 입력/출력용 Python CLI를 포함합니다.
 
