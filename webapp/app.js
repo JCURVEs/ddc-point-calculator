@@ -13,7 +13,6 @@
   function setup() {
     [
       "projectName",
-      "defaultAnalogModule",
       "addRowBtn",
       "exportCsvBtn",
       "ddcRows",
@@ -27,7 +26,6 @@
 
     els.addRowBtn.addEventListener("click", () => addRow());
     els.exportCsvBtn.addEventListener("click", exportCsv);
-    els.defaultAnalogModule.addEventListener("change", render);
     els.projectName.addEventListener("input", render);
 
     addRow({ ddcNo: "DDC-1" });
@@ -44,7 +42,7 @@
     setValue(row, ".do", data.do || 0);
     setValue(row, ".ai", data.ai || 0);
     setValue(row, ".ao", data.ao || 0);
-    setValue(row, ".analog", data.analog || "");
+    setValue(row, ".analog", data.analog || "TXM1.8X");
     setValue(row, ".panel", data.panel || "");
     setValue(row, ".controller", data.controller || "");
     row.addEventListener("input", render);
@@ -78,7 +76,7 @@
         do: numberValue(row, ".do"),
         ai: numberValue(row, ".ai"),
         ao: numberValue(row, ".ao"),
-        analog: value(row, ".analog") || els.defaultAnalogModule.value,
+        analog: value(row, ".analog"),
         panel: value(row, ".panel"),
         controllerOverride: value(row, ".controller"),
       };

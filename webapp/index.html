@@ -30,13 +30,6 @@
         Project
         <input id="projectName" type="text" value="Untitled Project" autocomplete="off">
       </label>
-      <label>
-        기본 Analog Module
-        <select id="defaultAnalogModule">
-          <option value="TXM1.8U">TXM1.8U - 0-10V/passive</option>
-          <option value="TXM1.8X" selected>TXM1.8X - 4-20mA 포함</option>
-        </select>
-      </label>
       <div class="button-row">
         <button id="addRowBtn" type="button">+ DDC 추가</button>
         <button id="exportCsvBtn" type="button">CSV 내보내기</button>
@@ -121,9 +114,8 @@
       <td class="total-cell">0</td>
       <td>
         <select class="analog">
-          <option value="">기본값</option>
           <option value="TXM1.8U">8U</option>
-          <option value="TXM1.8X">8X</option>
+          <option value="TXM1.8X" selected>8X</option>
         </select>
       </td>
       <td>
