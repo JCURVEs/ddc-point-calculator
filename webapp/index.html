@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DDC Point Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="top-band">
+      <div>
+        <p class="eyebrow">Siemens DDC Selector v1</p>
+        <h1>DDC 관제점 계산기</h1>
+      </div>
+      <div class="status-panel" aria-label="Calculation summary">
+        <div>
+          <span class="label">DDC</span>
+          <strong id="summaryCount">0</strong>
+        </div>
+        <div>
+          <span class="label">Total Points</span>
+          <strong id="summaryPoints">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="control-band" aria-label="Project settings">
+      <label>
+        Project
+        <input id="projectName" type="text" value="Untitled Project" autocomplete="off">
+      </label>
+      <label>
+        기본 Analog Module
+        <select id="defaultAnalogModule">
+          <option value="TXM1.8U">TXM1.8U - 0-10V/passive</option>
+          <option value="TXM1.8X" selected>TXM1.8X - 4-20mA 포함</option>
+        </select>
+      </label>
+      <div class="button-row">
+        <button id="addRowBtn" type="button">+ DDC 추가</button>
+        <button id="exportCsvBtn" type="button">CSV 내보내기</button>
+      </div>
+    </section>
+
+    <section class="flow-strip" aria-label="Selection flow">
+      <div class="flow-node input-node">DI / DO / AI / AO</div>
+      <div class="flow-line"></div>
+      <div class="flow-node controller-node">PXC4 / PXC5 / PXC7</div>
+      <div class="flow-line"></div>
+      <div class="flow-node material-node">TXM / TXS / TXA</div>
+    </section>
+
+    <section class="table-zone" aria-label="DDC point input">
+      <div class="section-title">
+        <h2>관제점 입력</h2>
+        <span>DI, DO, AI, AO만 넣으면 자동 계산됩니다.</span>
+      </div>
+      <div class="table-scroll">
+        <table id="ddcTable">
+          <thead>
+            <tr>
+              <th>DDC-No</th>
+              <th>설치위치</th>
+              <th>관제장비</th>
+              <th>DI</th>
+              <th>DO</th>
+              <th>AI</th>
+              <th>AO</th>
+              <th>Total</th>
+              <th>Analog</th>
+              <th>Panel</th>
+              <th>Controller</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="ddcRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="result-grid">
+      <div class="result-panel">
+        <div class="section-title">
+          <h2>선정 결과</h2>
+          <span>컨트롤러와 TXM 수량</span>
+        </div>
+        <div class="table-scroll">
+          <table id="selectionTable">
+            <thead>
+              <tr>
+                <th>DDC-No</th>
+                <th>Total</th>
+                <th>Controller</th>
+                <th>TXM1.16D</th>
+                <th>TXM1.6R</th>
+                <th>TXM1.8U</th>
+                <th>TXM1.8X</th>
+                <th>TXS</th>
+                <th>TXA</th>
+                <th>근거</th>
+              </tr>
+            </thead>
+            <tbody id="selectionRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <template id="rowTemplate">
+    <tr>
+      <td><input class="ddc-no" type="text" value="DDC-1"></td>
+      <td><input class="area" type="text" placeholder="예: 1공장 기계실"></td>
+      <td><input class="equipment" type="text" placeholder="예: AHU-1"></td>
+      <td><input class="point di" type="number" min="0" step="1" value="0"></td>
+      <td><input class="point do" type="number" min="0" step="1" value="0"></td>
+      <td><input class="point ai" type="number" min="0" step="1" value="0"></td>
+      <td><input class="point ao" type="number" min="0" step="1" value="0"></td>
+      <td class="total-cell">0</td>
+      <td>
+        <select class="analog">
+          <option value="">기본값</option>
+          <option value="TXM1.8U">8U</option>
+          <option value="TXM1.8X">8X</option>
+        </select>
+      </td>
+      <td>
+        <select class="panel">
+          <option value="">자동</option>
+          <option value="A">A 800x880x300</option>
+          <option value="B">B 800x1150x300</option>
+          <option value="C">C 900x1430x300</option>
+          <option value="D">D 900x1800x300</option>
+          <option value="E">E 900x2180x300</option>
+        </select>
+      </td>
+      <td>
+        <select class="controller">
+          <option value="">자동</option>
+          <option value="PXC4.E16S-2">PXC4.E16S-2</option>
+          <option value="PXC5.E24">PXC5.E24</option>
+          <option value="PXC7.E400S">PXC7.E400S</option>
+          <option value="PXC7.E400M">PXC7.E400M</option>
+          <option value="PXC7.E400L">PXC7.E400L</option>
+        </select>
+      </td>
+      <td><button class="icon-btn remove-row" type="button" title="행 삭제" aria-label="행 삭제">x</button></td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
